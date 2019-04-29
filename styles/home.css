@@ -1,0 +1,44 @@
+#friends {
+    background-color: chartreuse;
+    width: 20%;
+    height: 100%;
+    float: right;
+}
+
+#prof_img {
+    background-color: bisque;
+    width: 80%;
+    text-align: center;
+    height: 30%;
+}
+
+.side-bar {
+    background-color: blueviolet;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+
+.friend_item {
+    margin: 3px;
+    background-color: rgb(233, 31, 132);
+    width: auto;
+    height: 50px;
+}
+
+.chatList-img {
+    width:30px;
+    height: 30px;
+    float: left;
+}
+
+.chatName {
+    float: right;
+    color: cyan;
+}
+
+
+body{
+    background-color: orange;
+}

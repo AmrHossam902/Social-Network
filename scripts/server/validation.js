@@ -14,7 +14,7 @@ function validate_signup_data(name, password1, password2, email){
     else{
         var small = false, capital = false, special = false;
         for(let i =0; i<password1.length; i++){
-            if(password1[i]>= 'a' && password[i] <= "z")
+            if(password1[i]>= 'a' && password1[i] <= "z")
                 small = true;
             else if(password1[i] >= 'A' && password1[i] <= 'Z')
                 capital = true;

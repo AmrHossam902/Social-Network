@@ -6,25 +6,25 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/index.css" />
-    <script src="main.js"></script>
+    <script src="/scripts/client/clientindex.js"></script>
 </head>
 <body>
     <h1>name</h1>
     <div>
-        <form method="POST" action="/signup">
+        <form name="signup">
             <input name="username" type="text" placeholder="Username">
             <input name="email" type="email" placeholder="Email">
             <input name="password1" type="password" placeholder="Password">
             <input name="password2"type="password" placeholder="Confirm Pass">
-            <input type="submit" value="Sign Up">
+            <button type="button" onclick="submit_signup()">Sign UP</button>
         </form>
     </div>
 
     <div>
-        <form method="POST" action="/login">
+        <form name="login">
             <input name="email" type="email" placeholder="email">
             <input name="password" type="password" placeholder="pasword">
-            <input type="submit" value="Log In">
+            <button type="button" onclick="submit_login()">Log In</button>
         </form>
     </div>
 

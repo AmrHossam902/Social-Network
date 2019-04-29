@@ -1,0 +1,26 @@
+
+div {
+    height: 100px;
+    width: 100px;
+    margin: 1in;
+    float: left;
+}
+
+ul {
+    width: 3in;
+    list-style-type: none;
+}
+
+#s1 {
+    background-color: crimson;
+}
+
+#s2 {
+    background-color: orangered;
+}
+
+
+#s3 {
+    background-color: green;
+}
+
