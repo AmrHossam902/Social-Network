@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SignUp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, min=2400px">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/signup.css" />
+    <script src="../scripts/client/signup.js"></script>
+</head>
+<body>
+    
+    <h1>Socwork</h1>
+
+    <form method="POST" action="/signup" name="signup-form">
+        <input type="name" name="username" placeholder="username" required/><br>
+        <label name="username_error"></label>
+        
+        <input type="email" name="email" placeholder="email" required /><br>
+        <label name="email_error"></label>
+        
+        <input type="password" name="password1" placeholder="password" pattern="(a-z)+" required/><br>
+        <input type="password" name="password2" placeholder="password confirm" required/><br>
+        <label name="password_error"></label>
+        
+        <button type="button"  onclick="signup()">Sign Up <div class="loader"></div></button>       
+    
+    </form>
+
+    <script>
+        function signup() {
+
+            // A) syntactic form validation
+            //---------------------------------
+            // 1- check that all fields are filled
+            // 2- email format is correct
+            // 3- password is correct
+            var error = false;
+
+            var username = document.forms["signup-form"]["username"];
+            var email = document.forms["signup-form"]["email"];
+            var password1 =  document.forms["signup-form"]["password1"];
+            var password2 =  document.forms["signup-form"]["password2"];
+
+            if(username.value ===""){
+                error = true;
+                document.forms["signup-form"]["username"].style.borderColor = "red";
+                
+                var  uname_error =  document.getElementsByName("username_error")[0];
+                uname_error.innerHTML = "please enter a username";
+                uname_error.style.display = "block";
+
+                document.forms["signup-form"]["username"].onfocus = function(){
+                    uname_error.style.display = "none";
+                    this.style.borderColor ="initial";
+                };
+            }
+
+            
+            var email_pat = /^(([0-9]|[a-z]|[A-Z]|_)+\.)*([0-9]|[a-z]|[A-Z]|_)+@([0-9]|[a-z]|[A-Z]|_)+(\.([0-9]|[a-z]|[A-Z]|_)+)*$/
+            var match = email_pat.test(email.value);
+            if(!match){
+                error = true;
+                email.style.borderColor = "red";
+                var email_error = document.getElementsByName("email_error")[0];
+                email_error.innerHTML = "enter a valid email";
+                email_error.style.display = "block";
+
+                email.onfocus = function(){
+                    email_error.style.display = "none";
+                    email.style.borderColor = "initial";
+                }
+            }
+
+
+            var result = password_validator(password1.value, password2.value);
+            if(result != true){
+                error = true;
+                document.forms["signup-form"]["password1"].style.borderColor = "red";
+                document.forms["signup-form"]["password2"].style.borderColor = "red";
+                var password_error = document.getElementsByName("password_error")[0];
+                password_error.style.display = "block";
+                password_error.innerHTML = result;
+                
+                document.forms["signup-form"]["password1"].onfocus = function(){
+                    password_error.style.display = "none";
+                    this.style.borderColor ="initial";
+                    document.forms["signup-form"]["password2"].style.borderColor = "initial";
+                };
+
+                document.forms["signup-form"]["password2"].onfocus = function(){
+                    password_error.style.display = "none";
+                    this.style.borderColor ="initial";
+                    document.forms["signup-form"]["password1"].style.borderColor = "initial";
+                };
+
+
+            }
+
+            if(!error){
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/signup");
+                xhr.onreadystatechange =  function(){
+
+                    if(xhr.readyState == 4){
+
+                        var response_obj = JSON.parse(xhr.responseText);
+                        if(!response_obj.error){
+                            window.location.pathname = "/verify";
+                        }
+                        else{
+                            email.style.borderColor = "red";
+                            var email_error = document.getElementsByName("email_error")[0];
+                            email_error.innerHTML = "this email is alredy in use";
+                            email_error.style.display = "block";
+                            email.onfocus = function(){
+                                this.style.borderColor = "initial";
+                                email_error.style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+                xhr.send(JSON.stringify({
+                    'username':username,
+                    'email': email, 
+                    'password1': password1, 
+                    'password2': password2
+                }));
+            }
+        }
+        
+        function password_validator(password1, password2){
+            
+            if(password1 === "")
+                return "password can't be empty";
+
+            var upper = false, lower = false, num =false, special = false;
+            for(let i=0; i<password1.length; i++){
+                
+                if(password1[i] >= 'a' && password1[i] <= 'z' )
+                    lower = true;
+                else if(password1[i] >= 'A' && password1[i] <= 'Z' )
+                    upper = true;
+                else if (password1[i] >= '0' && password1[i] <= '9')
+                    num = true;
+                else
+                    special = true;
+            }
+
+            if(upper && lower && num && special){
+                if(password1 === password2)
+                    return true;
+                else
+                    return "password mismatch"
+            }
+            else
+                return "password must contain (a-z),(A-Z),(0-9),special chars";
+        }
+
+    </script>
+
+    <form method="POST" action="/home" name="login-form"> 
+        <input type="email" placeholder="email"/><br>
+        <label></label>
+        <input type="password" placeholder="password"/><br>
+        <label></label>
+        <button type="submit" onclick="return login()">Log in <div class="loader"></div></button>
+    </form>
+    
+
+
+
+</body>
+</html>

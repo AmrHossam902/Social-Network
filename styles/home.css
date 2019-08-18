@@ -1,0 +1,223 @@
+* {
+    box-sizing: border-box;
+}
+
+    
+body {
+    background-color: rgb(0, 255, 200);
+    margin: 0px;
+}
+
+
+@media only screen and (min-width: 1in){
+    #chat-list {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 6.5in){
+
+    #body {
+        display: grid;
+        grid-template-columns: 11em auto;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+    }
+
+    #chat-list {
+
+        display: block;
+
+        grid-row: 1/2;
+        grid-column: 1/2;
+        
+        background-color: greenyellow;
+
+        overflow-y: scroll;
+
+        padding-top: 4.5em;
+        
+    }
+
+    #chat-list::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    #posts {
+        grid-row: 1/2;
+        grid-column: 2/3; 
+        background-color: coral;
+        overflow-y: scroll;
+
+        padding-top: 5em;
+    }
+
+    #posts::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .friend-card {
+        background-color: rgba(71, 188, 192, 0.301);
+        position: relative;
+
+        height: 3em;
+        width: 10.5em;
+        margin: 0.25em;
+
+        border-radius: 0.3em;
+    }
+
+    .friend-card > img {
+        display: none;
+        
+        width: 2.5em;
+        height: 2.5em;
+        
+        margin: 0.5em;
+        border-radius: 1.25em;
+
+        position: absolute;
+        top: 0.3em;
+        left: 0%;
+
+    }
+    .friend-card > label {
+        display: block;
+        width: 9em;
+        margin: 0.5em;
+
+        position: absolute;
+        top: 0.5em;
+        left: 1em;
+
+        overflow-x: hidden;
+        white-space: nowrap;
+        
+    }
+
+    .friend-card > .status {
+        width: 0.5em;
+        height: 0.5em;
+        border-radius: 0.25em;
+        background-color: rgb(3, 202, 20);
+
+        position: absolute;
+        top:0.7em;
+        right: 0.7em;
+
+    }
+
+    /*post styling*/
+    .post {
+        width: 70%;
+        height: fit-content;
+        background-color: antiquewhite;
+        
+        margin-top: 1em;
+        margin-right: 15%;
+        margin-left: 15%;
+
+        padding: 1em;
+
+        position: relative;
+        border-radius: 1em;
+    }
+
+    .head {
+        width: 100%;
+        height: 5em;
+    }
+
+    .head >img {
+        display: block;
+        position: absolute;
+
+        top:1em;
+        left:1em;
+
+        width: 4em;
+        height: 4em;
+
+        border-radius: 1em;
+
+    }
+
+    .head > .name {
+        font-size: 1.2em;
+        font-weight: bold;
+        
+        
+        display: block;
+        position: absolute;
+
+        left:5em;
+        top:1.25em;
+
+    }
+
+    .head > .time {
+        font-size: 1.2em;
+
+        display: block;
+        position: absolute;
+
+        left:5em;
+        top:2.5em;
+
+    }
+    /* post content*/
+    .content {
+        margin-bottom: 0.5em;
+    }
+    /* post tail */
+    .tail {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: 2em auto;
+    }
+
+    .like, .dislike, .comment, .share{
+        text-align: center;
+        font-size: 1.5em;
+        transition: color 0.25s;
+        transition-timing-function: ease-out;
+    }
+
+    .comments {
+        width: inherit;
+        height: 200px;
+        background-color: chocolate;
+        grid-row: 2/3;
+        grid-column: 1/5;
+    }
+
+    .like:hover, .dislike:hover, .comment:hover, .share:hover{
+        color: dodgerblue;
+    }
+
+}
+
+@media only screen and (min-width: 8.5in){
+
+    #body{
+        grid-template-columns: 13.5em auto;
+    }
+
+    #padder {
+        width:13.5em;
+    }
+
+    .friend-card {
+        height: 4em;
+        width: 13em;
+    }
+
+    .friend-card > img {
+        display: block;
+    }
+    .friend-card > label {
+        top: 1em;
+        left: 3em;        
+    }
+}
