@@ -1,0 +1,156 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+}
+
+@media all and (min-width:6.5in){
+    #body{
+        display: grid;
+        grid-template-columns: 11em auto;
+        height: 100vh;
+    }
+}
+
+@media all and (min-width:8.5in){
+    #body{
+        grid-template-columns: 13.5em auto;
+    }
+}
+
+#chat-list{
+    padding-top: 0.5em;
+    z-index: 3;
+}
+
+
+#conversation{
+    grid-column: 2/3;
+    background-color: azure;
+    
+    display: grid;
+    grid-template-rows: 3em auto 4em;
+}
+
+#conversation::-webkit-scrollbar{
+    width: 0px;
+}
+
+
+#chat-head{
+
+    text-align: center;
+    width:100%;
+    grid-row: 1/2;
+
+    border-bottom: 2px solid gray;
+
+    box-shadow: 0em 0.01em 1em 0.2em black;
+
+    z-index: 2;
+}
+
+#chat-head>label{
+    font-size: 1.5em;
+    display: inline-block;
+    padding-top: 0.4em;
+
+    font-weight: bold;
+}
+
+#chat-head>a{
+    height: 2.7em;
+    width: 2.7em;
+    text-align: center;
+    float: left;
+    display: block;
+    margin-top: 0.5em;
+
+    cursor: pointer;
+}
+#chat-head>a>i{
+    font-size: 1.8em;
+    padding: 0px;
+    color: darkgrey;
+}
+
+
+#dialogue{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(231, 163, 231);
+
+    grid-row: 2/3;
+
+    overflow-y: scroll;
+
+    z-index: 1;
+}
+
+#dialogue::-webkit-scrollbar{
+    width: 0px;
+}
+
+#dialogue>div{
+    width:100%;
+    overflow-y: auto;
+}
+
+#dialogue>div>p{
+    max-width: 70%;
+    width: fit-content;
+
+    background-color: orange;
+
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin: 0.5em;
+
+    float: left;
+
+}
+
+#input{
+    width:100%;    
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+
+    grid-row: 3/4;
+}
+
+#input>textarea{
+    flex-basis: 30em;
+    flex-shrink: 8;
+    flex-grow: 8;
+
+    margin: 0.5em;
+    
+    resize: none;
+    padding: 0.5em;
+    border-radius: 0.25em;
+
+}
+
+#input>textarea::-webkit-scrollbar{
+    width: 0px;
+}
+
+#input>button{
+    flex-basis: 5em;
+    flex-shrink: 1;
+    flex-grow: 1;
+    height: 2em;
+
+
+    margin: 1.2em;
+
+    border: none;
+    border-radius: 0.5em; 
+    outline: none;
+
+    background-color: rgb(74, 74, 255);
+    color: white;
+}

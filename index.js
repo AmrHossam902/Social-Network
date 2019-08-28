@@ -53,6 +53,16 @@ app.get("/home", function(req, res){
 });
 
 
+app.get("/user", function(req, res){
+    res.render("user");
+});
+
+
+app.get("/chat", function(req, res){
+    res.render("chat");
+});
+
+
 const IO_cparser = require("socket.io-cookie-parser"); 
 var IO_server = require("socket.io")(http_server);
 
